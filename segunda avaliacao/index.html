@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Document</title>
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <title>My Todo App</title>
   </head>
   <body>
     <form method="get" action=".">
@@ -17,26 +17,78 @@
           type="text"
           id="cep"
           value=""
-          size="10"
           maxlength="9"
-          onclick="pesquisacep(this.value)" /></label
+          onblur="pesquisacep(this.value);" /></label
       ><br />
-      <button id="button">Buscar</button>
-      <br />
-      <label>Rua: <input name="rua" type="text" id="rua" size="60" /></label
+      <label>Rua: <input name="rua" type="text" id="rua" /></label><br />
+      <label>Bairro: <input name="bairro" type="text" id="bairro" /></label
       ><br />
-      <label
-        >Bairro:
-        <input name="bairro" type="text" id="bairro" size="40" /></label
+      <label>Cidade: <input name="cidade" type="text" id="cidade" /></label
       ><br />
-      <label
-        >Cidade:
-        <input name="cidade" type="text" id="cidade" size="40" /></label
-      ><br />
-      <label>Estado: <input name="uf" type="text" id="uf" size="2" /></label
-      ><br />
-      <label>IBGE: <input name="ibge" type="text" id="ibge" size="8" /></label
-      ><br />
+      <label>Estado: <input name="uf" type="text" id="uf" /></label><br />
+      <label>IBGE: <input name="ibge" type="text" id="ibge" /></label><br />
     </form>
+    <button id="addic" onclick="addic()">adicionar</button>
+    <div id="ruaResult"></div>
+    <div id="bairroResult"></div>
+    <script>
+      /* Metthod for add todo  */
+      let addic = () => {
+        let ruaResult = document.getElementById("rua").value;
+        let bairroResult = document.getElementById("bairro").value;
+        let cidadeResult = document.getElementById("cidade").value;
+        let ufResult = document.getElementById("uf").value;
+        let ibgeResult = document.getElementById("ibge").value;
+        if (ruaResult != "") {
+          setData(ruaResult);
+          setData(bairroResult);
+          localStorage.setItem("first", "firstvalue");
+          localStorage.setItem("second", "secondvalue");
+          listTodo(); // handler for showing item from local storage
+        }
+      };
+      /* handler for print todo  */
+      let listTodo = () => {
+        let html = `<ul>`;
+        let data = getData(); // handler for getting item from local storage
+        if (data) {
+          data.forEach((value) => {
+            html += `<tr><th>${value}</th></tr><br>`;
+          });
+        }
+        document.getElementById("ruaResult").innerHTML = html;
+        document.getElementById("bairroResult").innerHTML = html;
+      };
+
+      /* handler for get todo  */
+      let getData = (item = null) => {
+        let data = JSON.parse(localStorage.getItem("result"));
+        if (data) {
+          if (item) {
+            if (data.indexOf(item) != -1) {
+              return data[item];
+            } else {
+              return false;
+            }
+          }
+          return data;
+        }
+        return false;
+      };
+
+      listTodo(); // call print handler for showing data into list
+
+      /* handler for set data/item todo  */
+      let setData = (item) => {
+        if (getData(item) != false) {
+        } else {
+          let data = getData(); // call getdata handler for getting  data from list
+          data = data != false ? data : [];
+          data.push(item);
+          data = JSON.stringify(data);
+          localStorage.setItem("result", data);
+        }
+      };
+    </script>
   </body>
 </html>

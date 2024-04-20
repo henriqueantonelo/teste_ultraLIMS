@@ -54,32 +54,53 @@
             value=""
             size="10"
             maxlength="9"
-            onclick="pesquisacep(this.value)"
           />
         </div>
-        <button>Buscar</button>
+        <button id="search-button" onclick="store()">Buscar</button>
         <div class="search-result">
           <div class="result-content">
             <table>
               <tr>
-                <th>CEP</th>
-                <td><a>bbb</a></td>
-              </tr>
-              <tr>
                 <th>Rua</th>
-                <td><a>bbb</a></td>
+                <td>
+                  <input name="rua" type="text" id="rua" size="60" disabled />
+                </td>
               </tr>
               <tr>
                 <th>Bairro</th>
-                <td><a>bbb</a></td>
+                <td>
+                  <input
+                    name="bairro"
+                    type="text"
+                    id="bairro"
+                    size="40"
+                    disabled
+                  />
+                </td>
               </tr>
               <tr>
                 <th>Cidade</th>
-                <td><a>bbb</a></td>
+                <td>
+                  <input
+                    name="cidade"
+                    type="text"
+                    id="cidade"
+                    size="40"
+                    disabled
+                  />
+                </td>
               </tr>
               <tr>
                 <th>UF</th>
-                <td><a>bbb</a></td>
+                <td>
+                  <input name="uf" type="text" id="uf" size="2" disabled />
+                </td>
+              </tr>
+              <tr>
+                <th>IBGE</th>
+                <td>
+                  <input name="ibge" type="text" id="ibge" size="8" disabled />
+                </td>
               </tr>
             </table>
           </div>

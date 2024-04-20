@@ -1,3 +1,4 @@
+///Funcionamento do switch de temas
 let theme_toggler = document.querySelector("#theme");
 
 theme_toggler.addEventListener("click", function () {
@@ -8,6 +9,8 @@ const themeBtn = document.querySelector(".fa-circle-half-stroke");
 themeBtn.addEventListener("click", function () {
   themeBtn.classList.toggle("flipped");
 });
+
+///funcionamento da busca por CEP
 
 function limpa_formulário_cep() {
   //Limpa valores do formulário de cep.
@@ -73,3 +76,39 @@ function pesquisacep(valor) {
     limpa_formulário_cep();
   }
 }
+
+const button = document.getElementById("search-button");
+const input = document.getElementById("cep");
+button.addEventListener("click", function () {
+  console.log("hahah");
+  pesquisacep(input.value);
+});
+input.addEventListener("click", function () {
+  console.log("gagasfas");
+});
+const ruaInput = document.getElementById("rua");
+const bairroInput = document.getElementById("bairro");
+const cidadeInput = document.getElementById("cidade");
+const ufInput = document.getElementById("uf");
+const ibgeInput = document.getElementById("ibge");
+
+/// Armazenando os dados no local storage
+// let store = () => {
+//   let ruaValue = ruaInput.value;
+//   // let bairroValue = bairroInput.value;
+//   // let cidadeValue = cidadeInput.value;
+//   // let ufValue = ufInput.value;
+//   // let ibgeValue = ibgeInput.value;
+//   setData(ruaValue);
+//   table();
+// };
+
+// let table = () => {
+//   let html = ``;
+//   let data = getData(); // handler for getting item from local storage
+//   if (data) {
+//     data.forEach((value, item) => {
+//       console.log(value, item);
+//     });
+//   }
+// };

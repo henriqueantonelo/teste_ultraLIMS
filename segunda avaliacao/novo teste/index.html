@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js"></script>
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <form id="registrationForm">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="rua">Rua:</label>
+      <input type="text" id="rua" name="rua" required />
+      <button type="submit">Register</button>
+      <!-- //////////////////////////////////////////// -->
+    </form>
+    <form method="get" action=".">
+      <label
+        >Cep:
+        <input
+          name="cep"
+          type="text"
+          id="cep"
+          value=""
+          size="10"
+          maxlength="9"
+          onblur="pesquisacep(this.value);" /></label
+      ><br />
+      <label>Rua: <input name="rua" type="text" id="rua" size="60" /></label
+      ><br />
+      <label
+        >Bairro:
+        <input name="bairro" type="text" id="bairro" size="40" /></label
+      ><br />
+      <label
+        >Cidade:
+        <input name="cidade" type="text" id="cidade" size="40" /></label
+      ><br />
+      <label>Estado: <input name="uf" type="text" id="uf" size="2" /></label
+      ><br />
+      <label>IBGE: <input name="ibge" type="text" id="ibge" size="8" /></label
+      ><br />
+    </form>
+    <div id="userDataContainer">
+      <table id="userDataTable" border="1">
+        <thead>
+          <tr>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+            <th>IBGE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table body will be dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("registrationForm");
+        const tableBody = document.querySelector("#userDataTable tbody");
+
+        // Load existing user data from localStorage when the page loads
+        let savedUserData = JSON.parse(localStorage.getItem("userData")) || [];
+
+        // Function to render table rows based on user data
+        function renderUserTable() {
+          tableBody.innerHTML = ""; // Clear existing table rows
+
+          // Check if savedUserData is an array
+          if (!Array.isArray(savedUserData)) {
+            savedUserData = []; // Reset to empty array if not valid
+          }
+
+          savedUserData.forEach((userData) => {
+            const newRow = document.createElement("tr");
+            const fullNameCell = document.createElement("td");
+            const emailCell = document.createElement("td");
+            const passwordCell = document.createElement("td");
+            fullNameCell.textContent = userData.fullName;
+            emailCell.textContent = userData.email;
+            passwordCell.textContent = userData.rua;
+
+            newRow.appendChild(fullNameCell);
+            newRow.appendChild(emailCell);
+            newRow.appendChild(passwordCell);
+
+            tableBody.appendChild(newRow);
+          });
+        }
+
+        // Render existing user data when the page loads
+        renderUserTable();
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Get form values
+          const fullName = document.getElementById("fullName").value;
+          const email = document.getElementById("email").value;
+          const rua = document.getElementById("rua").value;
+
+          // Create new user data object
+          const newUser = {
+            fullName: fullName,
+            email: email,
+            rua: rua,
+          };
+
+          // Add new user data to the savedUserData array
+          savedUserData.push(newUser);
+
+          // Save updated user data to localStorage
+          localStorage.setItem("userData", JSON.stringify(savedUserData));
+
+          // Render updated table with new user data
+          renderUserTable();
+
+          // Clear form fields after submission
+          form.reset();
+        });
+      });
+    </script>
+  </body>
+</html>
