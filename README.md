@@ -10,24 +10,19 @@ Para utilizar, basta digitar o CEP desejado e clicar em "Buscar". Os resultados 
 
 ## Como foi Feito
 
-```
 O site de busca de CEP foi desenvolvido utilizando HTML, CSS e JavaScript.
 HTML: Define a estrutura da página, incluindo formulários e elementos de exibição de resultados.
 CSS: Aplica estilos para melhorar a apresentação e usabilidade da página.
 JavaScript: Gerencia a interação do usuário, fazendo chamadas à API de busca de CEP e atualizando os elementos da página com os resultados obtidos.
 
-```
-
 ## Tecnologias Utilizadas
 
-```
 HTML: Utilizado para estruturar a página web.
 CSS: Utilizado para estilizar os elementos HTML, tornando a página visualmente atraente e responsiva.
 JavaScript: Utilizado para adicionar interatividade à página, permitindo que os usuários insiram um CEP e recebam as informações sobre o memso.
 API de Busca de CEP: Uma API utilizada para obter os detalhes do endereço com base no CEP inserido pelo usuário.
 Git e GitHub: Gerenciar e compartilhar o código-fonte do projeto.
 Ferramentas de Teste e Auditoria: Foi utilizado o Lighthouse para verificar a acessibilidade, performance e boas práticas da página web.
-```
 
 ## 🤝 Feito por Henrique Antonelo
 
