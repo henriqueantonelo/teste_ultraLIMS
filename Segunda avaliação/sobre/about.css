@@ -1,0 +1,156 @@
+:root {
+  --primaryColor: rgb(22, 33, 62);
+  --secondaryColor: rgb(3, 183, 252);
+  --tertiaryColor: rgb(3, 183, 252);
+  /* //// */
+  --backgroundColor: #ffffff;
+  /* //// */
+  --quoteText: rgb(0, 0, 0);
+  --quoteBg: rgb(229, 233, 246);
+  /* //// */
+  --headerText: #ffff;
+  --mainText: rgb(22, 33, 62);
+  /* //// */
+  --buttonHover: rgb(9, 138, 195);
+  /* //// */
+  --boxShadow: rgb(187, 187, 187);
+}
+.dark-mode {
+  --primaryColor: #101010;
+  --secondaryColor: rgb(255, 79, 63);
+  --tertiaryColor: rgb(255, 79, 63);
+  /* //// */
+  --backgroundColor: rgb(26, 26, 26);
+  /* //// */
+
+  /* //// */
+  --headerText: #ffff;
+  --mainText: rgb(255, 255, 255);
+  /* //// */
+  --buttonHover: rgb(153, 39, 29);
+  /* //// */
+  --boxShadow: rgb(255, 255, 255);
+}
+
+/* Estilos padrão  */
+.hidden {
+  display: none;
+}
+
+.flipped {
+  transform: scaleX(-1);
+}
+
+.flip-vertical {
+  margin-top: 7px;
+  transform: scaley(-1);
+}
+
+/* Estilos da página */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--backgroundColor);
+  font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica Neue, Arial,
+    Noto Sans, sans-serif;
+  color: var(--mainText);
+}
+
+ul {
+  list-style: none;
+  display: inline;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Header e navbar */
+
+.header {
+  background-color: var(--primaryColor);
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 80px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  min-height: 60px;
+}
+
+.logo {
+  font-size: 25px;
+  letter-spacing: -1.5px;
+  font-weight: 600;
+}
+
+.nav-list {
+  display: flex;
+  column-gap: 40px;
+}
+
+.nav-link {
+  color: var(--headerText);
+  font-weight: 500;
+  font-size: 1em;
+  font-weight: bold;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--secondaryColor);
+}
+
+/* Principal */
+
+main {
+  width: 80%;
+  /* height: 100vh; */
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.site-preview {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px var(--boxShadow);
+}
+
+blockquote {
+  color: var(--quoteText);
+  background: var(--quoteBg);
+  border-left: 10px solid #ccc;
+  margin: 1.5em 0;
+  padding: 0.5em 10px;
+}
+
+h2 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  color: var(--tertiaryColor);
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
