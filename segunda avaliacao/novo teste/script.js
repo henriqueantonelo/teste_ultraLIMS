@@ -10,6 +10,7 @@ function limpa_formulário_cep() {
 function meu_callback(conteudo) {
   if (!("erro" in conteudo)) {
     //Atualiza os campos com os valores.
+    document.getElementById("cepResult").value = conteudo.cep;
     document.getElementById("rua").value = conteudo.logradouro;
     document.getElementById("bairro").value = conteudo.bairro;
     document.getElementById("cidade").value = conteudo.localidade;
@@ -35,6 +36,7 @@ function pesquisacep(valor) {
     //Valida o formato do CEP.
     if (validacep.test(cep)) {
       //Preenche os campos com "..." enquanto consulta webservice.
+      document.getElementById("cepResult").value = "...";
       document.getElementById("rua").value = "...";
       document.getElementById("bairro").value = "...";
       document.getElementById("cidade").value = "...";

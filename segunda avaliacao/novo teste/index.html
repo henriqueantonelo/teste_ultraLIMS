@@ -3,98 +3,141 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js"></script>
-    <title>Registration Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <form id="registrationForm">
-      <label for="rua">Rua:</label>
-      <input type="text" id="rua" name="rua" required />
-      <label for="bairro">Bairro:</label>
-      <input type="text" id="bairro" name="bairro" required />
-      <label for="cidade">Cidade:</label>
-      <input type="text" id="cidade" name="cidade" required />
-      <label for="uf">UF:</label>
-      <input type="text" id="uf" name="uf" required />
-      <label for="ibge">IBGE:</label>
-      <input type="text" id="ibge" name="ibge" required />
-      <button type="submit">Register</button>
-    </form>
-    <!-- //////////////////////////////////////////// -->
-    <div id="userDataContainer">
-      <table id="userDataTable" border="1">
-        <thead>
-          <tr>
-            <th>Rua</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th>UF</th>
-            <th>IBGE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Table body will be dynamically populated -->
-        </tbody>
-      </table>
-    </div>
-
+    <main>
+      <form method="get" action=".">
+        <label
+          >Cep:
+          <input
+            name="cep"
+            type="text"
+            id="cep"
+            value=""
+            size="10"
+            maxlength="9"
+            onblur="pesquisacep(this.value);"
+        /></label>
+      </form>
+      <form id="registrationForm">
+        <label for="cep">Cep:</label>
+        <input type="text" id="cepResult" name="cep" required />
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" required />
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" required />
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" required />
+        <label for="uf">UF:</label>
+        <input type="text" id="uf" name="uf" required />
+        <label for="ibge">IBGE:</label>
+        <input type="text" id="ibge" name="ibge" required />
+        <button type="submit">Register</button>
+      </form>
+      <!-- //////////////////////////////////////////// -->
+      <div class="recent-container">
+        <div id="userDataContainer">
+          <table id="userDataTable" border="1">
+            <thead>
+              <tr>
+                <th data-column="cepResult">CEP</th>
+                <th data-column="bairro" id="bairroHeader">
+                  Bairro<i class="fa-solid fa-sort-down"></i>
+                </th>
+                <th data-column="cidade" id="cidadeHeader">
+                  Cidade<i class="fa-solid fa-sort-down"></i>
+                </th>
+                <th data-column="rua">Rua</th>
+                <th data-column="uf" id="estadoHeader">
+                  UF<i class="fa-solid fa-sort-down"></i>
+                </th>
+                <th data-column="ibge">IBGE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table body will be dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("registrationForm");
         const tableBody = document.querySelector("#userDataTable tbody");
-
-        // Load existing user data from localStorage when the page loads
         let savedUserData = JSON.parse(localStorage.getItem("userData")) || [];
+        let sortDirection = {}; // Objeto para rastrear a direção de ordenação por cada coluna
 
-        // Function to render table rows based on user data
         function renderUserTable() {
-          tableBody.innerHTML = ""; // Clear existing table rows
+          tableBody.innerHTML = ""; // Limpa as linhas existentes da tabela
 
-          // Check if savedUserData is an array
           if (!Array.isArray(savedUserData)) {
-            savedUserData = []; // Reset to empty array if not valid
+            savedUserData = [];
           }
 
           savedUserData.forEach((userData) => {
             const newRow = document.createElement("tr");
-            //////
+
+            const cepCell = document.createElement("td");
             const fullNameCell = document.createElement("td");
             const emailCell = document.createElement("td");
             const passwordCell = document.createElement("td");
             const ufCell = document.createElement("td");
             const ibgeCell = document.createElement("td");
 
+            cepCell.textContent = userData.cepResult;
             fullNameCell.textContent = userData.bairro;
             emailCell.textContent = userData.cidade;
             passwordCell.textContent = userData.rua;
             ufCell.textContent = userData.uf;
             ibgeCell.textContent = userData.ibge;
 
+            newRow.appendChild(cepCell);
             newRow.appendChild(fullNameCell);
             newRow.appendChild(emailCell);
             newRow.appendChild(passwordCell);
             newRow.appendChild(ufCell);
             newRow.appendChild(ibgeCell);
 
-            tableBody.appendChild(newRow);
+            tableBody.appendChild(newRow); // Adiciona a linha ao final da tabela
           });
         }
 
-        // Render existing user data when the page loads
         renderUserTable();
 
         form.addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form submission
+          event.preventDefault();
 
-          // Get form values
+          const cepResult = document.getElementById("cepResult").value;
           const bairro = document.getElementById("bairro").value;
           const rua = document.getElementById("rua").value;
           const cidade = document.getElementById("cidade").value;
           const uf = document.getElementById("uf").value;
           const ibge = document.getElementById("ibge").value;
 
-          // Create new user data object
+          const existingUserIndex = savedUserData.findIndex(
+            (user) => user.cepResult === cepResult
+          );
+          if (existingUserIndex !== -1) {
+            savedUserData.splice(existingUserIndex, 1);
+          }
+
           const newUser = {
+            cepResult: cepResult,
             bairro: bairro,
             rua: rua,
             cidade: cidade,
@@ -102,17 +145,57 @@
             ibge: ibge,
           };
 
-          // Add new user data to the savedUserData array
-          savedUserData.push(newUser);
+          savedUserData.unshift(newUser);
 
-          // Save updated user data to localStorage
           localStorage.setItem("userData", JSON.stringify(savedUserData));
 
-          // Render updated table with new user data
           renderUserTable();
 
-          // Clear form fields after submission
           form.reset();
+        });
+
+        // Função de ordenação para colunas específicas
+        function sortTable(columnName) {
+          if (
+            !sortDirection[columnName] ||
+            sortDirection[columnName] === "desc"
+          ) {
+            // Ordenação crescente
+            savedUserData.sort((a, b) =>
+              a[columnName].localeCompare(b[columnName])
+            );
+            sortDirection[columnName] = "asc";
+          } else {
+            // Ordenação decrescente
+            savedUserData.sort((a, b) =>
+              b[columnName].localeCompare(a[columnName])
+            );
+            sortDirection[columnName] = "desc";
+          }
+
+          renderUserTable();
+
+          const arrows = document.querySelectorAll(".fa-sort-down");
+          if (sortDirection[columnName] == "asc") {
+            arrows.forEach((arrow) => arrow.classList.add("flip-vertical"));
+          } else {
+            arrows.forEach((arrow) => arrow.classList.remove("flip-vertical"));
+          }
+        }
+        const bairroTableHeader = document.getElementById("bairroHeader");
+        const cidadeTableHeader = document.getElementById("cidadeHeader");
+        const estadoTableHeader = document.getElementById("estadoHeader");
+        bairroTableHeader.addEventListener("click", function () {
+          const columnName = bairroTableHeader.dataset.column;
+          sortTable(columnName);
+        });
+        cidadeTableHeader.addEventListener("click", function () {
+          const columnName = cidadeTableHeader.dataset.column;
+          sortTable(columnName);
+        });
+        estadoTableHeader.addEventListener("click", function () {
+          const columnName = estadoTableHeader.dataset.column;
+          sortTable(columnName);
         });
       });
     </script>

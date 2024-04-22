@@ -244,6 +244,17 @@ main {
   background-color: var(--tableEven);
 }
 
+.fa-sort-down {
+  position: absolute;
+  margin: auto;
+  padding-left: 5px;
+}
+
+.flip-vertical {
+  margin-top: 7px;
+  transform: scaley(-1);
+}
+
 /* footer  */
 
 footer {
