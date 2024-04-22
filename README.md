@@ -1,7 +1,5 @@
 # Busca de CEP / Teste UltraLIMS
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-
 <img src="/buscador de cep.png" alt="Exemplo imagem">
 
 > Este é um simples site de busca de CEP que permite aos usuários encontrar informações sobre endereços a partir do CEP. Você pode inserir um CEP na caixa de busca e obter detalhes sobre a rua, bairro, cidade, estado (UF) e o código IBGE correspondente.
@@ -24,7 +22,7 @@ API de Busca de CEP: Uma API utilizada para obter os detalhes do endereço com b
 Git e GitHub: Gerenciar e compartilhar o código-fonte do projeto.
 Ferramentas de Teste e Auditoria: Foi utilizado o Lighthouse para verificar a acessibilidade, performance e boas práticas da página web.
 
-## 🤝 Feito por Henrique Antonelo
+## Feito por Henrique Antonelo
 
 <table>
   <tr>

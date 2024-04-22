@@ -50,7 +50,7 @@
       <div class="search-container">
         <div class="search-content">
           <h1>Faça uma busca</h1>
-          <form method="get" action=".">
+          <form method="get" action="." onkeydown="return event.key != 'Enter';">
             <input
               name="cep"
               type="text"
