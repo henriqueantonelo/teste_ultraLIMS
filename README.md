@@ -8,10 +8,12 @@ Para utilizar, basta digitar o CEP desejado e clicar em "Buscar". Os resultados 
 
 ## Como foi Feito
 
+```
 O site de busca de CEP foi desenvolvido utilizando HTML, CSS e JavaScript.
 HTML: Define a estrutura da página, incluindo formulários e elementos de exibição de resultados.
 CSS: Aplica estilos para melhorar a apresentação e usabilidade da página.
 JavaScript: Gerencia a interação do usuário, fazendo chamadas à API de busca de CEP e atualizando os elementos da página com os resultados obtidos.
+```
 
 ## Tecnologias Utilizadas
 
